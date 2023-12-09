@@ -1,10 +1,12 @@
-# Maintainer: ToadKing <toadking at toadking dot com>
+# Maintainer: Robin Ekman <robin [dot] seth [dot] ekman [at] gmail [dot] com>
+# Contributor: ToadKing <toadking at toadking dot com>
 # Contributor: Soukyuu <chrno-sphered at hotmail dot com>
 # Contributor: archtux <antonio dot arias99999 at gmail dot com>
-pkgname=deadbeef-git
-pkgver=r11509.b6c2bc326
+_pkgname=deadbeef
+pkgname=${_pkgname}-ekman-git
+pkgver=1.9.6.r206.g8bd3a7dc9
 pkgrel=1
-pkgdesc="A GTK+ audio player for GNU/Linux (devel branch)"
+pkgdesc="A GTK+ audio player for GNU/Linux (Robin Ekman's fork)"
 url="https://deadbeef.sourceforge.io/"
 arch=('i686' 'x86_64')
 license=('GPL2'
@@ -44,9 +46,9 @@ optdepends=('gtk2: for the GTK2 interface'
             'mpg123: for MP1/MP2/MP3 playback'
             'libpipewire: for pipewire plugin')
 options=('!libtool')
-conflicts=('deadbeef')
+conflicts=('deadbeef' 'deadbeef-git')
 provides=('deadbeef=1.9.6')
-source=('git+https://github.com/DeaDBeeF-Player/deadbeef.git')
+source=('git+https://github.com/rsekman/deadbeef.git#branch=ekman')
 md5sums=('SKIP')
 
 prepare() {
@@ -56,7 +58,7 @@ prepare() {
 }
 
 build() {
-  cd "$srcdir/deadbeef"
+  cd "$srcdir/${_pkgname}"
 
   ./autogen.sh
   CC=clang CXX=clang++ ./configure --prefix=/usr
@@ -64,13 +66,13 @@ build() {
 }
 
 package() {
-  cd "$srcdir/deadbeef"
+  cd "$srcdir/${_pkgname}"
 
   make DESTDIR="$pkgdir" install
   install -Dm644 COPYING "$pkgdir/usr/share/licenses/$pkgname/COPYING"
 }
 
 pkgver() {
-  cd "$srcdir/deadbeef"
-  echo r$(git rev-list --count master).$(git rev-parse --short master)
+  cd "$srcdir/${_pkgname}"
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
