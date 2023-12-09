@@ -90,7 +90,7 @@ build() {
 
   ./autogen.sh
   CC=clang CXX=clang++ ./configure --prefix=/usr
-  make
+  make -j
 }
 
 package() {
