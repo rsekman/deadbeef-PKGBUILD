@@ -5,7 +5,7 @@
 _pkgname=deadbeef
 pkgname=${_pkgname}-ekman-git
 pkgver=1.9.6.r213.gb93374bcf
-pkgrel=2
+pkgrel=3
 pkgdesc="A GTK+ audio player for GNU/Linux (Robin Ekman's fork)"
 url="https://deadbeef.sourceforge.io/"
 arch=('i686' 'x86_64')
@@ -75,7 +75,7 @@ optdepends=(
 )
 options=('!libtool')
 conflicts=('deadbeef' 'deadbeef-git')
-provides=('deadbeef=$pkgver')
+provides=("deadbeef=${pkgver}")
 source=('git+https://github.com/rsekman/deadbeef.git#branch=ekman')
 md5sums=('SKIP')
 
