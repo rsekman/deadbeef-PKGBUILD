@@ -4,8 +4,8 @@
 # Contributor: archtux <antonio dot arias99999 at gmail dot com>
 _pkgname=deadbeef
 pkgname=${_pkgname}-ekman-git
-pkgver=1.9.6.r206.g8bd3a7dc9
-pkgrel=1
+pkgver=1.9.6.r213.gb93374bcf
+pkgrel=2
 pkgdesc="A GTK+ audio player for GNU/Linux (Robin Ekman's fork)"
 url="https://deadbeef.sourceforge.io/"
 arch=('i686' 'x86_64')
@@ -75,7 +75,7 @@ optdepends=(
 )
 options=('!libtool')
 conflicts=('deadbeef' 'deadbeef-git')
-provides=('deadbeef=1.9.6')
+provides=('deadbeef=$pkgver')
 source=('git+https://github.com/rsekman/deadbeef.git#branch=ekman')
 md5sums=('SKIP')
 
