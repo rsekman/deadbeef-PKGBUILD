@@ -9,9 +9,11 @@ pkgrel=3
 pkgdesc="A GTK+ audio player for GNU/Linux (Robin Ekman's fork)"
 url="https://deadbeef.sourceforge.io/"
 arch=('i686' 'x86_64')
-license=('GPL2'
-         'LGPL2.1'
-         'ZLIB')
+license=(
+    'GPL2'
+    'LGPL2.1'
+    'ZLIB'
+)
 depends=(
     'alsa-lib'
     'hicolor-icon-theme'
