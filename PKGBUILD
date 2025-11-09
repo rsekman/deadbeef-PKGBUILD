@@ -4,8 +4,8 @@
 # Contributor: archtux <antonio dot arias99999 at gmail dot com>
 _pkgname=deadbeef
 pkgname=${_pkgname}-ekman-git
-pkgver=1.9.6.r220.ga59dd243f
-pkgrel=2
+pkgver=1.10.0.r288.ga5b281f30
+pkgrel=1
 pkgdesc="A GTK+ audio player for GNU/Linux (Robin Ekman's fork)"
 url="https://deadbeef.sourceforge.io/"
 arch=('i686' 'x86_64' 'aarch64')
@@ -91,10 +91,6 @@ build() {
   cd "$srcdir/${_pkgname}"
 
   export CC=clang CXX=clang++
-  if [ "$CARCH" = "aarch64" ]; then
-      export CFLAGS="$CFLAGS -Wno-error=unused-command-line-argument"
-      export CXXFLAGS="$CXXFLAGS -Wno-error=unused-command-line-argument"
-  fi
   ./autogen.sh
   ./configure --prefix=/usr
   make -j
@@ -115,6 +111,6 @@ pkgver() {
 check() {
   cd "$srcdir/${_pkgname}"
 
-  travis/download-linux-static-deps.sh
+  ci_scripts/download-linux-static-deps.sh
   ./scripts/test.sh
 }
